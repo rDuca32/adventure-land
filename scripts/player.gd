@@ -12,14 +12,9 @@ func _physics_process(_delta: float) -> void:
 		Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
 		Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
 	).normalized()
-	
+
 	var is_running := Input.is_action_pressed("sprint")
-	var speed
-	
-	if is_running:
-		speed = run_speed
-	else:
-		speed = walk_speed
+	var speed := run_speed if is_running else walk_speed
 	
 	if input_dir != Vector2.ZERO:
 		last_dir = input_dir
@@ -28,43 +23,13 @@ func _physics_process(_delta: float) -> void:
 		_play_move(input_dir, is_running)
 	else:
 		velocity = Vector2.ZERO
-		_play_idle(last_dir)
+		anim.play("idle")
 	
 func _play_move(dir: Vector2, is_running) -> void:
-	if abs(dir.x) > abs(dir.y):
-		if dir.x > 0.0:
-			anim.flip_h = false
-			if is_running:
-				anim.play("run")
-			else:
-				anim.play("walk")
-		else:
-			anim.flip_h = true
-			if is_running:
-				anim.play("run")
-			else:
-				anim.play("walk")
-	else:
-		if dir.y > 0.0:
-			if is_running:
-				anim.play("run")
-			else:
-				anim.play("walk")
-		else:
-			if is_running:
-				anim.play("run")
-			else:
-				anim.play("walk")
-		
+	var action := "run" if is_running else "walk"
 	
-func _play_idle(dir: Vector2) -> void:
-	if abs(dir.x) > abs(dir.y):
-		if dir.x > 0.0:
-			anim.play("idle")
-		else:
-			anim.play("idle")
+	if (abs(dir.x) >= abs(dir.y)):
+		anim.flip_h = dir.x < 0
+		anim.play(action)
 	else:
-		if dir.y > 0.0:
-			anim.play("idle")
-		else:
-			anim.play("idle")
+		anim.play(action)
