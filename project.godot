@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="AdventureLand"
-run/main_scene="uid://b1un3vnuc50ri"
+run/main_scene="uid://b5jf5g34i2f6i"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 

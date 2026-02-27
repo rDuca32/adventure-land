@@ -208,11 +208,11 @@ script = ExtResource("1_mdl7e")
 sprite_frames = SubResource("SpriteFrames_gv3ic")
 animation = &"run"
 autoplay = "idle"
-frame_progress = 0.94622767
+frame_progress = 0.6328134
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1065635129]
 position = Vector2(0.5, -0.5)
 shape = SubResource("RectangleShape2D_v6fml")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1700105897]
-zoom = Vector2(4, 4)
+zoom = Vector2(3, 3)
